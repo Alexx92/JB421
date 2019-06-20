@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/jdbc 
+    http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd          
+    http://camel.apache.org/schema/spring 
+    http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="com.test.route.TransformingData_Route" id="fileRouteBuilder"/>
+    <bean class="com.test.bean.ProcessA" id="ProcessA"/>
+    <bean class="com.test.bean.ProcessB" id="ProcessB"/>
+    <!-- Config ACTIVEMQ -->
+    <bean class="org.apache.activemq.spring.ActiveMQConnectionFactory" id="connectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61617"/>
+        <property name="userName" value="admin"/>
+        <property name="password" value="admin"/>
+        <property name="trustAllPackages" value="true"/>
+    </bean>    
+    <bean class="org.apache.camel.component.jms.JmsConfiguration" id="jmsConfig">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean>
+    <bean class="org.apache.activemq.camel.component.ActiveMQComponent" id="activemq">
+        <property name="configuration" ref="jmsConfig"/>
+    </bean>
+    <!-- Config Datasource -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	    <property name="url" value="jdbc:mysql://localhost:3306/pruebas"/>
+	    <property name="username" value="root"/>
+	    <property name="password" value="mysql"/>
+	</bean>
+    <camelContext id="_camelContext1" xmlns="http://camel.apache.org/schema/spring">
+        <routeBuilder ref="fileRouteBuilder"/>
+    </camelContext>
+</beans>

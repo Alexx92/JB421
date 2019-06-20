@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cl.pruebas</groupId>
+	<artifactId>Test_A</artifactId>
+	<version>1.0.167</version>
+	<packaging>bundle</packaging>
+	<name>Camel Spring Quickstart</name>
+	<description>Empty Camel Spring Example</description>
+
+	<properties>
+		<camel.version>2.17.0.redhat-630187</camel.version>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<version.maven-bundle-plugin>3.2.0</version.maven-bundle-plugin>
+		<jboss.fuse.bom.version>6.3.0.redhat-187</jboss.fuse.bom.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<skipTests>true</skipTests>
+		<fabric8.features> camel-core camel-spring camel-test-spring camel-amq
+			camel-jaxb camel-jackson camel-xmljson camel-spark-rest camel-bindy camel-jdbc</fabric8.features>
+		<maven.compiler.source>1.8</maven.compiler.source>
+
+		<fabric8.profile>cl.pruebas-Test_A</fabric8.profile>
+		<fabric8.profileversion>1.0</fabric8.profileversion>
+		<fabric8.parentProfiles>feature-camel</fabric8.parentProfiles>
+		<fabric.version>1.2.0.redhat-630187</fabric.version>
+
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.fuse.bom</groupId>
+				<artifactId>jboss-fuse-parent</artifactId>
+				<version>${jboss.fuse.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-test-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jaxb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jackson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-xmljson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xom</groupId>
+			<artifactId>xom</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spark-rest</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-bindy</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.camel</groupId>
+		    <artifactId>camel-jdbc</artifactId>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.enterprise</groupId> -->
+<!-- 			<artifactId>cdi-api</artifactId> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 			<version>1.2</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.camel</groupId> -->
+<!-- 			<artifactId>camel-cdi</artifactId> -->
+<!-- 		</dependency>	 -->
+	</dependencies>
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+			<plugin> 
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>${version.maven-bundle-plugin}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+<!-- 					    <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName> -->
+						<Import-Package>*</Import-Package>
+<!-- 						<Require-Capability> -->
+<!-- 			              osgi.extender; filter:="(osgi.extender=pax.cdi)",  -->
+<!-- 			              org.ops4j.pax.cdi.extension; filter:="(extension=camel-cdi-extension)" -->
+<!-- 			            </Require-Capability> -->
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-maven-plugin</artifactId>
+				<version>${camel.version}</version>
+
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>fabric8-maven-plugin</artifactId>
+				<version>1.2.0.redhat-630187</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>
