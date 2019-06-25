@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cl.pruebas</groupId>
 	<artifactId>Test_A</artifactId>
-	<version>1.0.167</version>
+	<version>1.0.188</version>
 	<packaging>bundle</packaging>
 	<name>Camel Spring Quickstart</name>
 	<description>Empty Camel Spring Example</description>
@@ -116,12 +116,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-<!-- 					    <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName> -->
 						<Import-Package>*</Import-Package>
-<!-- 						<Require-Capability> -->
-<!-- 			              osgi.extender; filter:="(osgi.extender=pax.cdi)",  -->
-<!-- 			              org.ops4j.pax.cdi.extension; filter:="(extension=camel-cdi-extension)" -->
-<!-- 			            </Require-Capability> -->
 					</instructions>
 				</configuration>
 			</plugin>
