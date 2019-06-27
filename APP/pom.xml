@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cl.pruebas</groupId>
 	<artifactId>Test_A</artifactId>
-	<version>1.0.188</version>
+	<version>1.0.220</version>
 	<packaging>bundle</packaging>
 	<name>Camel Spring Quickstart</name>
 	<description>Empty Camel Spring Example</description>
@@ -95,16 +95,16 @@
 		    <groupId>org.apache.camel</groupId>
 		    <artifactId>camel-jdbc</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>javax.enterprise</groupId> -->
-<!-- 			<artifactId>cdi-api</artifactId> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 			<version>1.2</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.camel</groupId> -->
-<!-- 			<artifactId>camel-cdi</artifactId> -->
-<!-- 		</dependency>	 -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>1
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>2
+			<artifactId>camel-cdi</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<defaultGoal>install</defaultGoal>
